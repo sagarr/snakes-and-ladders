@@ -1,8 +1,12 @@
 class Board:
 
-    def __init__(self, players, board_size=100):
+    def __init__(self, players=1, board_size=100):
         self.player_position = [1] * players
         self.board_size = board_size
+
+    @property
+    def size(self):
+        return self.board_size
 
     def move(self, dice_thrown, player):
         if self.player_position[player] + dice_thrown <= self.board_size:
@@ -13,13 +17,17 @@ class Board:
 
 class SnakeBoard:
 
-    def __init__(self, players, snake_positions):
+    def __init__(self, players=1, snake_positions=[]):
         self.board = Board(players=players)
         self.snake_positions = {}
         for start_pos, end_pos in snake_positions:
             if start_pos in self.snake_positions:
                 raise ValueError(f"Snake already placed at {start_pos}!")
             self.snake_positions[start_pos] = end_pos
+
+    @property
+    def size(self):
+        return self.board.size
 
     def get_snake_positions(self):
         for start_pos, end_pos in self.snake_positions.items():

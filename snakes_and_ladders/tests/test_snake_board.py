@@ -19,9 +19,9 @@ def test_duplicate_snake_start_position_not_allowed_on_board():
 def test_snake_bite_moves_player_from_snake_start_position_to_end_position():
     snake_board = SnakeBoard(snake_positions=[(14, 7)])
 
-    snake_board.move(6)  # 7
-    snake_board.move(6)  # 13
+    snake_board.move(6, 0)  # 7
+    snake_board.move(6, 0)  # 13
 
-    player_position = snake_board.move(1)  # 14
+    player_position = snake_board.move(1, 0)  # 14
 
     assert player_position == 7
